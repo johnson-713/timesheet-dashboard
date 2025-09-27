@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Setup Instructions
 
-## Getting Started
+1. Clone the repository
 
-First, run the development server:
+```bash
+git clone <repo-url>
+cd <repo-folder>
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Environment configuration
+
+Create a .env file in the root directory.
+
+Add the following environment variables:
+
+```bash
+NEXTAUTH_SECRET=<random-string>
+```
+
+4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+5. Access the app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open http://localhost:3000 in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Frameworks and Libraries Used
 
-## Learn More
+Next.js 13+ (App Router): React framework with latest routing and server/client components.
 
-To learn more about Next.js, take a look at the following resources:
+React Hook Form validation: For form validations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Shadcn UI: UI components library used for layout, table, buttons, dropdowns, select, calendar, modal, badges, etc.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tailwind CSS: Utility-first CSS framework for styling and layout.
 
-## Deploy on Vercel
+Dayjs: Lightweight date parsing and manipulation.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+React Query (@tanstack/react-query): Data fetching and caching library.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+NextAuth: Authentication framework for access control and session management.
+
+Axios: HTTP client for API requests.
+
+Additional helper utilities for colors, fonts, etc.
+
+## Assumptions and Notes
+
+All UI components (Table, Badge, Select, DropdownMenu, Calendar, Button, Skeleton) are customized or generated from the Shadcn UI library.
+
+Authentication redirects are managed using NextAuth and Next.js Middleware or client-side session checks.
+
+Timesheet API returns paginated, filtered data based on page, limit, status, and date range query parameters.
+
+The pagination UI is reactive to certain page count and limits.
+
+Mobile responsiveness is achieved using Tailwind responsive utilities (sm:, md: breakpoints) and scrollable containers.
+
+The solution assumes a modern browser supporting React 18 features and Next.js 13.
