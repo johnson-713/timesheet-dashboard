@@ -72,7 +72,7 @@ export default function TimesheetTableWithPagination({
                 <TableCell className="px-2 md:px-4 min-w-[150px]">
                   {t.week}
                 </TableCell>
-                <TableCell className="px-2 md:px-4 min-w-[200px]">
+                <TableCell className="px-2 md:px-4 min-w-[300px]">
                   {t.date}
                 </TableCell>
                 <TableCell className="px-2 md:px-4 min-w-[300px]">
