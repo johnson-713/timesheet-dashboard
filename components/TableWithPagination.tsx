@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Table,
   TableHeader,
@@ -14,11 +14,11 @@ import { Button } from "@/components/ui/button";
 interface Timesheet {
   week: number;
   date: string;
-  status: "COMPLETED" | "INCOMPLETE" | "MISSING" | string;
+  status: "COMPLETED" | "INCOMPLETE" | "MISSING";
   action: string;
 }
 
-interface PaginationInfo {
+export interface PaginationInfo {
   page: number;
   limit: number;
   totalPages: number;
@@ -26,28 +26,14 @@ interface PaginationInfo {
 }
 
 interface TimesheetTableWithPaginationProps {
-  fetchData: (
-    page: number,
-    limit: number
-  ) => Promise<{
-    data: Timesheet[];
-    pagination: PaginationInfo;
-  }>;
-  initialPage?: number;
-  initialLimit?: number;
+  loading: boolean;
+  data: Timesheet[];
 }
 
 export default function TimesheetTableWithPagination({
-  fetchData,
-  initialPage = 1,
-  initialLimit = 5,
+  loading,
+  data,
 }: TimesheetTableWithPaginationProps) {
-  const [page, setPage] = useState(initialPage);
-  const [limit, setLimit] = useState(initialLimit);
-  const [timesheets, setTimesheets] = useState<Timesheet[]>([]);
-  const [pagination, setPagination] = useState<PaginationInfo | null>(null);
-  const [loading, setLoading] = useState(false);
-
   const statusBadge = {
     COMPLETED: <Badge className="bg-green-100 text-green-700">COMPLETED</Badge>,
     INCOMPLETE: (
@@ -56,50 +42,48 @@ export default function TimesheetTableWithPagination({
     MISSING: <Badge className="bg-pink-100 text-pink-700">MISSING</Badge>,
   };
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(`/api/timesheets?page=${page}&limit=${limit}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setTimesheets(data.data);
-        setPagination({
-          page: data.page,
-          limit: data.limit,
-          totalPages: data.totalPages,
-          totalItems: data.totalItems,
-        });
-        setLoading(false);
-      });
-  }, [page, limit]);
-
   return (
-    <div>
-      <Table>
+    <div className="bg-white shadow-md rounded-sm overflow-x-auto">
+      <Table className="min-w-[600px] md:min-w-full table-auto">
         <TableHeader>
-          <TableRow>
-            <TableHead>WEEK #</TableHead>
-            <TableHead>DATE</TableHead>
-            <TableHead>STATUS</TableHead>
-            <TableHead>ACTIONS</TableHead>
+          <TableRow className="bg-[#F9FAFB] text-xs md:text-base">
+            <TableHead className="px-2 md:px-4">WEEK #</TableHead>
+            <TableHead className="px-2 md:px-4">DATE</TableHead>
+            <TableHead className="px-2 md:px-4">STATUS</TableHead>
+            <TableHead className="px-2 md:px-4">ACTIONS</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {loading ? (
             <TableRow>
-              <TableCell colSpan={4}>Loading...</TableCell>
+              <TableCell colSpan={4} className="text-center py-6">
+                Loading...
+              </TableCell>
             </TableRow>
-          ) : timesheets.length === 0 ? (
+          ) : data?.length === 0 ? (
             <TableRow>
-              <TableCell colSpan={4}>No Data</TableCell>
+              <TableCell colSpan={4} className="text-center py-6">
+                No Data
+              </TableCell>
             </TableRow>
           ) : (
-            timesheets.map((t) => (
+            data?.map((t) => (
               <TableRow key={t.week}>
-                <TableCell>{t.week}</TableCell>
-                <TableCell>{t.date}</TableCell>
-                <TableCell>{statusBadge[t.status] || t.status}</TableCell>
-                <TableCell>
-                  <Button size="sm" variant="outline">
+                <TableCell className="px-2 md:px-4 min-w-[50px]">
+                  {t.week}
+                </TableCell>
+                <TableCell className="px-2 md:px-4 min-w-[150px]">
+                  {t.date}
+                </TableCell>
+                <TableCell className="px-2 md:px-4 min-w-[120px]">
+                  {statusBadge[t.status] || t.status}
+                </TableCell>
+                <TableCell className="px-2 md:px-4 min-w-[100px]">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="border-none text-primary"
+                  >
                     {t.action}
                   </Button>
                 </TableCell>
@@ -108,54 +92,6 @@ export default function TimesheetTableWithPagination({
           )}
         </TableBody>
       </Table>
-
-      {/* Pagination */}
-      {pagination && (
-        <div className="flex justify-between items-center mt-4">
-          <select
-            className="border rounded px-2 py-1 text-sm"
-            value={limit}
-            onChange={(e) => setLimit(Number(e.target.value))}
-          >
-            {[5, 10, 20].map((opt) => (
-              <option key={opt} value={opt}>
-                {opt} per page
-              </option>
-            ))}
-          </select>
-
-          <div className="flex gap-1">
-            <Button
-              size="sm"
-              variant="ghost"
-              disabled={page <= 1}
-              onClick={() => setPage(page - 1)}
-            >
-              Previous
-            </Button>
-
-            {[...Array(pagination.totalPages).keys()].map((i) => (
-              <Button
-                key={i + 1}
-                size="sm"
-                variant={page === i + 1 ? "default" : "ghost"}
-                onClick={() => setPage(i + 1)}
-              >
-                {i + 1}
-              </Button>
-            ))}
-
-            <Button
-              size="sm"
-              variant="ghost"
-              disabled={page >= pagination.totalPages}
-              onClick={() => setPage(page + 1)}
-            >
-              Next
-            </Button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

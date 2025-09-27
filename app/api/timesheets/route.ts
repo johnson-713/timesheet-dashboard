@@ -30,20 +30,26 @@ const timesheets = [
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-
   const page = parseInt(searchParams.get("page") ?? "1");
   const limit = parseInt(searchParams.get("limit") ?? "5");
+  const status = searchParams.get("status");
+
+  let filtered = timesheets;
+
+  // Status filter
+  if (status && status !== "") {
+    filtered = filtered.filter((t) => t.status === status);
+  }
 
   const startIndex = (page - 1) * limit;
-  const paginatedData = timesheets.slice(startIndex, startIndex + limit);
-
-  const totalPages = Math.ceil(timesheets.length / limit);
+  const paginatedData = filtered.slice(startIndex, startIndex + limit);
+  const totalPages = Math.ceil(filtered.length / limit);
 
   return NextResponse.json({
     page,
     limit,
     totalPages,
-    count: timesheets.length,
+    count: filtered.length,
     data: paginatedData,
   });
 }

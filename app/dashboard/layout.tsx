@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
@@ -9,7 +8,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
       <main className="flex-1 flex flex-col items-center justify-start py-8 px-0 bg-[#F8F8F8]">
         {children}
       </main>
-      <Footer />
     </div>
   );
 }
