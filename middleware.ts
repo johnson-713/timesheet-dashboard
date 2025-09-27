@@ -15,7 +15,7 @@ export async function middleware(req: NextRequest) {
   }
 
   // If no token and trying to access dashboard, redirect to /login
-  if (!token && pathname.startsWith("/dashboard")) {
+  if (!token && (pathname === "/" || pathname.startsWith("/dashboard"))) {
     const loginUrl = req.nextUrl.clone();
     loginUrl.pathname = "/login";
     return NextResponse.redirect(loginUrl);
