@@ -43,8 +43,8 @@ export default function TimesheetTableWithPagination({
   };
 
   return (
-    <div className="bg-white shadow-md rounded-sm overflow-x-auto">
-      <Table className="min-w-[600px] md:min-w-full table-auto">
+    <div className="bg-white shadow-md rounded-sm">
+      <Table className=" table-auto">
         <TableHeader>
           <TableRow className="bg-[#F9FAFB] text-xs md:text-base">
             <TableHead className="px-2 md:px-4">WEEK #</TableHead>
@@ -69,16 +69,16 @@ export default function TimesheetTableWithPagination({
           ) : (
             data?.map((t) => (
               <TableRow key={t.week}>
-                <TableCell className="px-2 md:px-4 min-w-[50px]">
+                <TableCell className="px-2 md:px-4 min-w-[150px]">
                   {t.week}
                 </TableCell>
-                <TableCell className="px-2 md:px-4 min-w-[150px]">
+                <TableCell className="px-2 md:px-4 min-w-[200px]">
                   {t.date}
                 </TableCell>
-                <TableCell className="px-2 md:px-4 min-w-[120px]">
+                <TableCell className="px-2 md:px-4 min-w-[300px]">
                   {statusBadge[t.status] || t.status}
                 </TableCell>
-                <TableCell className="px-2 md:px-4 min-w-[100px]">
+                <TableCell className="px-2 md:px-4 min-w-[200px]">
                   <Button
                     size="sm"
                     variant="outline"

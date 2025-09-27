@@ -59,7 +59,7 @@ export default function TimesheetsPage() {
           </Select>
         </div>
 
-        <div className="max-w-[330px]">
+        <div className="max-w-[330px] md:max-w-[1000px] md:w-full">
           {isFetching ? (
             <TimesheetTableSkeleton rows={Number(limit)} />
           ) : (
@@ -70,7 +70,7 @@ export default function TimesheetsPage() {
           )}
         </div>
         {pagination && (
-          <div className="flex flex-col md:justify-between md:items-center gap-[12px] mt-4">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-[12px] mt-4">
             <Select value={limit} onValueChange={setLimit}>
               <SelectTrigger className="w-[160px] py-[12px]">
                 <SelectValue placeholder="Limit" />
