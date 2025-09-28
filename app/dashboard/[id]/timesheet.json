@@ -1,0 +1,99 @@
+{
+  "id": 1,
+  "weekStart": "2024-01-21",
+  "weekEnd": "2024-01-26",
+  "totalHours": 20,
+  "targetHours": 40,
+  "days": [
+    {
+      "date": "2024-01-21",
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 2,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        }
+      ]
+    },
+    {
+      "date": "2024-01-22",
+      "tasks": [
+        {
+          "id": 3,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 4,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 5,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        }
+      ]
+    },
+    {
+      "date": "2024-01-23",
+      "tasks": [
+        {
+          "id": 6,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 7,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 8,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        }
+      ]
+    },
+    {
+      "date": "2024-01-24",
+      "tasks": [
+        {
+          "id": 9,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 10,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        },
+        {
+          "id": 11,
+          "title": "Homepage Development",
+          "hours": 4,
+          "project": "Project Name"
+        }
+      ]
+    },
+    {
+      "date": "2024-01-25",
+      "tasks": []
+    }
+  ]
+}

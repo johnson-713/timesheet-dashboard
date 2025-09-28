@@ -1,30 +1,40 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const timesheets = [
-  { week: 1, date: "1 - 5 January, 2024", status: "COMPLETED", action: "View" },
+  {
+    week: 1,
+    date: "1 - 5 January, 2024",
+    status: "COMPLETED",
+    action: "View",
+    id: 1,
+  },
   {
     week: 2,
     date: "8 - 12 January, 2024",
     status: "COMPLETED",
     action: "View",
+    id: 2,
   },
   {
     week: 3,
     date: "15 - 19 January, 2024",
     status: "INCOMPLETE",
     action: "Update",
+    id: 3,
   },
   {
     week: 4,
     date: "22 - 26 January, 2024",
     status: "COMPLETED",
     action: "View",
+    id: 4,
   },
   {
     week: 5,
     date: "28 January - 1 February, 2024",
     status: "MISSING",
     action: "Create",
+    id: 5,
   },
 ];
 

@@ -10,12 +10,14 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface Timesheet {
   week: number;
   date: string;
   status: "COMPLETED" | "INCOMPLETE" | "MISSING";
   action: string;
+  id: string;
 }
 
 export interface PaginationInfo {
@@ -34,6 +36,7 @@ export default function TimesheetTableWithPagination({
   loading,
   data,
 }: TimesheetTableWithPaginationProps) {
+  const router = useRouter();
   const statusBadge = {
     COMPLETED: <Badge className="bg-green-100 text-green-700">COMPLETED</Badge>,
     INCOMPLETE: (
@@ -83,6 +86,7 @@ export default function TimesheetTableWithPagination({
                     size="sm"
                     variant="outline"
                     className="border-none text-primary"
+                    onClick={() => router.push(`/dashboard/${t.id}`)}
                   >
                     {t.action}
                   </Button>
